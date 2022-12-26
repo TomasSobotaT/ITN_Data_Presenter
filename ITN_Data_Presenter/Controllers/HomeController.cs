@@ -32,8 +32,22 @@ namespace ITN_Data_Presenter.Controllers
             spravceDB.ZpracujData();
             spravceStranky.seznam = spravceDB.seznamITN.ToList();
          
+          
+
             spravceStranky.Filtruj();
             return View(spravceStranky);
         }
+
+
+        public IActionResult Statistika() 
+        {
+            SpravceDB spravceDB = new SpravceDB();
+            spravceDB.ZpracujData();
+            SpravceStranky spravceStranky = new SpravceStranky();
+            spravceStranky.seznam = spravceDB.seznamITN.ToList();
+            spravceStranky.Dotaz = spravceDB.seznamITN.ToList();
+            return View(spravceStranky);
+        }
+
     }
 }

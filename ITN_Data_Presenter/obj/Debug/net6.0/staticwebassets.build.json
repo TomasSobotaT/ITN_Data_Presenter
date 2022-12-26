@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gX7nZZst/Tf+/aYbUiI27v4caIoaqYQbt3yqvJtrYLU=",
+  "Hash": "1BDKYVaHdQXYi9ceGfPDzwANRIYFzHLWuQU5tPsdK0Y=",
   "Source": "ITN_Data_Presenter",
   "BasePath": "_content/ITN_Data_Presenter",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\GitHubZaloha\\ITN_Data_Presenter\\ITN_Data_Presenter\\wwwroot\\images\\users.png",
+      "SourceId": "ITN_Data_Presenter",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitHubZaloha\\ITN_Data_Presenter\\ITN_Data_Presenter\\wwwroot\\",
+      "BasePath": "_content/ITN_Data_Presenter",
+      "RelativePath": "images/users.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\users.png"
     },
     {
       "Identity": "C:\\GitHubZaloha\\ITN_Data_Presenter\\ITN_Data_Presenter\\wwwroot\\js\\site.js",

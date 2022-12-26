@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataDownloader
 {
+    /// <summary>
+    /// Třída načítající uživatele (User) z databáze do seznamu - List<User>
+    /// </summary>
     internal class SpravceDB
     {
         //connectionstring
@@ -19,7 +22,6 @@ namespace DataDownloader
         {
             string adresar = Directory.GetCurrentDirectory();
             pripojovaciString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + adresar + "\\Database\\Database.mdf;Integrated Security=True";
-
             seznamITN = new List<User>();
         }
 

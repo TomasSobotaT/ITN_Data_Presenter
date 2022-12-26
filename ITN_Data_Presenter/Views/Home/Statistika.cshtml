@@ -1,0 +1,31 @@
+﻿@model ITN_Data_Presenter.Models.SpravceStranky
+@{
+	ViewData["Title"] = "Statistika uživatelů";
+}
+
+<div class="text-center mb-5">
+	<h4>Statistika</h4>
+</div>
+
+<p><span class="fw-bold">Prohledaných Id: </span>@Model.seznam.Max(a=>a.Id)</p>
+<p><span class="fw-bold">Uživatelů v databázi: </span>@Model.seznam.Count()</p>
+<p><span class="fw-bold">Uživatelé s nahranou fotkou: </span>@Model.seznam.Where(a => a.ObrazekWWW != "https://www.itnetwork.cz/images/img/person.png").Count()</p>
+<p><span class="fw-bold">Uživatelé s vlastní www strankou: </span>@Model.seznam.Where(a => (a.Stranka != "")).Count()</p>
+@*Vyřazeni lidé co mají věk pod 10 a nad 99 let*@
+<p><span class="fw-bold">Průměrný věk uživatele </span>@Math.Round(@Model.seznam.Where(a=>(a.Vek>10&&a.Vek<100)).Average(a=>a.Vek)) let (z @Model.seznam.Where(a=>a.Vek>0).Count() uživatelů kteří zadali věk) </p>
+<p><span class="fw-bold">1-10 let: </span>@Model.seznam.Where(a=>(a.Vek>1&&a.Vek<10)).Count() uživatelů </p>
+<p><span class="fw-bold">10-18 let: </span>@Model.seznam.Where(a=>(a.Vek>=10&&a.Vek<18)).Count() uživatelů </p>
+<p><span class="fw-bold">18-25 let: </span>@Model.seznam.Where(a=>(a.Vek>=18&&a.Vek<25)).Count() uživatelů </p>
+<p><span class="fw-bold">25-35 let: </span>@Model.seznam.Where(a=>(a.Vek>=25&&a.Vek<35)).Count() uživatelů </p>
+<p><span class="fw-bold">35-45 let: </span>@Model.seznam.Where(a=>(a.Vek>=35&&a.Vek<45)).Count() uživatelů </p>
+<p><span class="fw-bold">45-60 let: </span>@Model.seznam.Where(a=>(a.Vek>=45&&a.Vek<60)).Count() uživatelů </p>
+<p><span class="fw-bold">60+ let: </span>@Model.seznam.Where(a=>(a.Vek>59)).Count() uživatelů </p>
+
+<p><span class="fw-bold">Přibližné procento žen: </span>
+	@{
+		int zen = Model.seznam.Where(a=>(a.Jmeno.EndsWith('a') || a.Jmeno.EndsWith('á'))).Count();
+		int uzivatelu = Model.seznam.Count();
+		double procento =  (double)zen / uzivatelu * 100;
+	}
+	@Math.Round(procento)%
+</p>
