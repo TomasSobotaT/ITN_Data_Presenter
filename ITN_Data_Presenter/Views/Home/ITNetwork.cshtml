@@ -1,0 +1,80 @@
+﻿@model ITN_Data_Presenter.Models.SpravceStranky
+
+<div class="container">
+	<div class="row bg-dark text-center">
+
+		<h2 class="text-white mb-4 pt-2">Uživatelé ITNetwork.cz </h2>
+
+		<form asp-action="ITNetwork" class="mb-5 text-light">
+
+			<label class="form-check-label mx-1">
+
+				@Html.CheckBoxFor(Model => Model.JenSwww)
+				@Html.DisplayName("Jen ti co mají www stránky")
+			</label>
+
+			<label class="form-check-label mx-1">
+
+				@Html.CheckBoxFor(Model => Model.SeraditJmeno)
+				@Html.DisplayName("Seřadit podle jména ")
+			</label>
+			<label class="form-check-label mx-1">
+
+				@Html.CheckBoxFor(Model => Model.JenSFoto)
+				@Html.DisplayName("Jen ti co mají foto")
+			</label>
+
+
+
+
+			<div class="form-group mt-3">
+				<input type="submit" value="Filtrovat" class="btn btn-primary" />
+			</div>
+
+
+
+		</form>
+
+		<p class="text-light text-muted text-left">Nalezeno: @Model.Dotaz.Count</p>
+		<div class="row justify-content-center">
+			@{
+				for (int i = 0; i < Model.Dotaz.Count; i++)
+				{
+
+
+					<div class="card text-center col-5 col-md-2 border border-dark m-3 d-flex">
+						<a target="_blank" href="@Model.Dotaz[i].ObrazekWWW"><img class="card-img img-fluid mt-2" src=@Model.Dotaz[i].ObrazekWWW style="max-height:200px"></a>
+						<div class="card-body">
+							
+							
+							<a target="_blank" href="https://www.itnetwork.cz/portfolio/ @Model.Dotaz[i].Id"> <h5 class="card-title fw-bold"> @Model.Dotaz[i].Jmeno </h5></a>
+
+
+							<p class="my-0"><span class="fw-bold">ID:</span> @Model.Dotaz[i].Id</p>
+							
+
+							@if (@Model.Dotaz[i].Vek >0)
+							{
+								<p class="my-0"><span class="fw-bold">Věk:</span> @Model.Dotaz[i].Vek</p>
+							}
+								
+							else
+							{
+								<p class="my-0"><span class="fw-bold">Věk: - </span></p>
+							}
+								
+											
+							<p class="my-0"><span class="fw-bold">Zkušenosti:</span> @Model.Dotaz[i].Zkusenost</p>
+							<p class="my-0"><span class="fw-bold">Aura:</span> @Model.Dotaz[i].Aura</p>
+							
+							<a target="_blank" href=@Model.Dotaz[i].Stranka class="">@Model.Dotaz[i].Stranka</a>
+
+						</div>
+					</div>
+
+				}
+			}
+
+		</div>
+	</div>
+</div>

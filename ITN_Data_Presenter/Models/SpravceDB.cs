@@ -13,14 +13,14 @@ namespace DataDownloader
         //connectionstring
         private string pripojovaciString;
         //seznam uzivatelu
-        private List<User> seznamITN; 
+        public List<User> seznamITN { get; private set; }
 
-        public SpravceDB(List<User> seznamITN)
+        public SpravceDB()
         {
             string adresar = Directory.GetCurrentDirectory();
-            pripojovaciString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + adresar + "\\Database.mdf;Integrated Security=True";
+            pripojovaciString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + adresar + "\\Database\\Database.mdf;Integrated Security=True";
 
-            this.seznamITN = seznamITN;
+            seznamITN = new List<User>();
         }
 
 
@@ -55,23 +55,27 @@ namespace DataDownloader
                         stranka = item["Urlwww"].ToString();
                         id = int.Parse(item["IdNaITN"].ToString());
                         vek = int.Parse(item["Vek"].ToString());
-                        zkusenost = int.Parse(item["Zkusenost"].ToString()); 
+                        zkusenost = int.Parse(item["Zkusenost"].ToString());
                         aura = int.Parse(item["Aura"].ToString());
 
-                        seznamITN.Add(new User(jmeno, obrazekWWW, stranka, id, vek, zkusenost, aura));   
+                        seznamITN.Add(new User(jmeno, obrazekWWW, stranka, id, vek, zkusenost, aura));
                     }
 
 
                 }
 
-            } 
+            }
 
 
         }
-           
-        
-        
-        
+
+
+
+
 
     }
+
+
+
+
 }
