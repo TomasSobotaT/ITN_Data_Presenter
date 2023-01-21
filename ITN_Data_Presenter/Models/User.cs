@@ -1,5 +1,4 @@
-﻿namespace DataDownloader
-{ 
+﻿namespace ITN_Data_Presenter.Models { 
     /// <summary>
     /// Třída reprezentující uživatele ItNetwork.cz
     /// </summary>

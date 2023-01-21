@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Data.SQLite;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,38 +8,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataDownloader
+namespace ITN_Data_Presenter.Models
 {
     /// <summary>
     /// Třída načítající uživatele (User) z databáze do seznamu - List<User>
     /// </summary>
-    internal class SpravceDB
+
+    public class SpravceDB
     {
         //connectionstring
         private string pripojovaciString;
         //seznam uzivatelu
         public List<User> seznamITN { get; private set; }
 
+
+     
+
         public SpravceDB()
         {
             string adresar = Directory.GetCurrentDirectory();
-            pripojovaciString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + adresar + "\\Database\\Database.mdf;Integrated Security=True";
+
+             pripojovaciString = "Data Source=" + adresar + "\\Database\\Database.sqlite;Version=3;";
+
+
             seznamITN = new List<User>();
         }
 
+        public string dejcestu() {return Directory.GetCurrentDirectory(); }
 
         /// <summary>
         /// Metoda připojí program k databázi a načte hodnoty do paměti
         /// </summary>
-        public void ZpracujData()
+
+        public void ZiskejData()
         {
-            using (SqlConnection spojeni = new SqlConnection(pripojovaciString))
+            using (SQLiteConnection spojeni = new SQLiteConnection(pripojovaciString))
             {
 
                 spojeni.Open();
                 string dotaz = "SELECT * FROM ITN_Users";
 
-                using (SqlDataAdapter adapter = new SqlDataAdapter(dotaz, spojeni))
+                using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(dotaz, spojeni))
                 using (DataSet vysledky = new DataSet())
                 {
                     adapter.Fill(vysledky);
@@ -70,6 +81,7 @@ namespace DataDownloader
 
 
         }
+
 
 
 

@@ -1,4 +1,4 @@
-﻿using DataDownloader;
+﻿
 using ITN_Data_Presenter.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -12,13 +12,14 @@ namespace ITN_Data_Presenter.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            SpravceDB a = new SpravceDB();
+            return View(a);
         }
 
         public IActionResult ITNetwork()
         {
             SpravceDB spravceDB = new SpravceDB();
-            spravceDB.ZpracujData();
+            spravceDB.ZiskejData();
             SpravceStranky spravceStranky = new SpravceStranky();
             spravceStranky.seznam = spravceDB.seznamITN.ToList();
             spravceStranky.Dotaz = spravceDB.seznamITN.ToList();
@@ -29,7 +30,7 @@ namespace ITN_Data_Presenter.Controllers
         public IActionResult ITNetwork(SpravceStranky spravceStranky)
         {
             SpravceDB spravceDB = new SpravceDB();
-            spravceDB.ZpracujData();
+            spravceDB.ZiskejData();
             spravceStranky.seznam = spravceDB.seznamITN.ToList();
          
           
@@ -42,7 +43,7 @@ namespace ITN_Data_Presenter.Controllers
         public IActionResult Statistika() 
         {
             SpravceDB spravceDB = new SpravceDB();
-            spravceDB.ZpracujData();
+            spravceDB.ZiskejData();
             SpravceStranky spravceStranky = new SpravceStranky();
             spravceStranky.seznam = spravceDB.seznamITN.ToList();
             spravceStranky.Dotaz = spravceDB.seznamITN.ToList();

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ITN_Data_Presenter.Models.SpravceDB
+@{
 	ViewData["Title"] = "ITNetwork Users Presenter";
 }
 
@@ -17,7 +18,7 @@
 
 		</div>
 	
-
+		<h1>@Model.dejcestu()</h1>
 		<div class="img-fluid">
 			<img src="images/users.png" />
 		</div>
