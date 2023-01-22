@@ -34,7 +34,6 @@ namespace ITN_Data_Presenter.Models
             seznamITN = new List<User>();
         }
 
-        public string dejcestu() {return Directory.GetCurrentDirectory(); }
 
         /// <summary>
         /// Metoda připojí program k databázi a načte hodnoty do paměti

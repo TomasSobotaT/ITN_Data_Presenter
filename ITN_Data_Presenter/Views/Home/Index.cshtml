@@ -1,4 +1,4 @@
-﻿@model ITN_Data_Presenter.Models.SpravceDB
+﻿
 @{
 	ViewData["Title"] = "ITNetwork Users Presenter";
 }
@@ -12,15 +12,15 @@
 			<h2 class="mb-3"> ITNetwork Users Presenter</h2>
 			<p>Načte z databáze informace o uživatelích itnetwork.cz do bootstrap karet</p>
 			<p>Data pak lze různě třídit, řadit a filtrovat</p>
-			<p>V databázi data pro všechny uživatele itnetwork.cz k 26.12.2022</p>
-			<p>Projekt slouží pouze ke studijním a testovacím účelům</p>
+			<p>V databázi data pro všechny uživatele itnetwork.cz k 20.1.2023</p>
+			<p class="text-danger">Projekt slouží pouze ke studijním a testovacím účelům</p>
 			<a class="btn btn-primary mt-3" asp-action="ITNetwork" asp-controller="Home">Spustit ITNetwork Users Presenter</a>
 
 		</div>
 	
-		<h1>@Model.dejcestu()</h1>
-		<div class="img-fluid">
-			<img src="images/users.png" />
+		
+		<div class="row-12 mb-5">
+			<img class="img-fluid" src="images/users.png" />
 		</div>
 
 	</div>

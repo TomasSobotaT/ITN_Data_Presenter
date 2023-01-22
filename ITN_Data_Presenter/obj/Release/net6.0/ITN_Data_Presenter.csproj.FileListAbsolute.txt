@@ -1,8 +1,6 @@
 C:\GitHubZaloha\ITN_Data_Presenter\ITN_Data_Presenter\bin\Release\net6.0\appsettings.Development.json
 C:\GitHubZaloha\ITN_Data_Presenter\ITN_Data_Presenter\bin\Release\net6.0\appsettings.json
 C:\GitHubZaloha\ITN_Data_Presenter\ITN_Data_Presenter\bin\Release\net6.0\ITN_Data_Presenter.staticwebassets.runtime.json
-C:\GitHubZaloha\ITN_Data_Presenter\ITN_Data_Presenter\bin\Release\net6.0\Database\Database.mdf
-C:\GitHubZaloha\ITN_Data_Presenter\ITN_Data_Presenter\bin\Release\net6.0\Database\Database_log.ldf
 C:\GitHubZaloha\ITN_Data_Presenter\ITN_Data_Presenter\bin\Release\net6.0\ITN_Data_Presenter.exe
 C:\GitHubZaloha\ITN_Data_Presenter\ITN_Data_Presenter\bin\Release\net6.0\ITN_Data_Presenter.deps.json
 C:\GitHubZaloha\ITN_Data_Presenter\ITN_Data_Presenter\bin\Release\net6.0\ITN_Data_Presenter.runtimeconfig.json

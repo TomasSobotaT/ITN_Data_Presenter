@@ -4,12 +4,12 @@
 	<div class="row bg-dark text-center">
 
 		<div>
-		<h2 class="text-white mb-4 pt-2">Uživatelé ITNetwork.cz </h2>
+			<h2 class="text-white mb-4 pt-2">Uživatelé ITNetwork.cz </h2>
 
-			<form asp-action="ITNetwork" class="mb-5 text-light">
 
-			
-				<div class="form-group>
+			@*			FORMULÁŘ PRO FILTRACI
+			*@			<form asp-action="ITNetwork" class="mb-5 text-light" id="form">
+				<div class="form-group">
 					<label class="form-check-label">
 						@Html.RadioButtonFor(Model => Model.SeraditPodle,"id")
 						@Html.DisplayName("Seřadit podle Id")
@@ -31,70 +31,98 @@
 						@Html.DisplayName("Seřadit podle aury")
 					</label>
 				</div>
-				
 
-			
+				<div class="mt-2">
+					<label class="form-check-label mx-1">
+						@Html.CheckBoxFor(Model => Model.JenSwww)
+						@Html.DisplayName("Jen ti co mají www stránky")
+					</label>
 
-
-			<div class="mt-2">
-				<label class="form-check-label mx-1">
-					@Html.CheckBoxFor(Model => Model.JenSwww)
-					@Html.DisplayName("Jen ti co mají www stránky")
-				</label>
-
-				<label class="form-check-label mx-1">
-					@Html.CheckBoxFor(Model => Model.JenSFoto)
-					@Html.DisplayName("Jen ti co mají foto")
-				</label>
-			</div>
-			
+					<label class="form-check-label mx-1">
+						@Html.CheckBoxFor(Model => Model.JenSFoto)
+						@Html.DisplayName("Jen ti co mají foto")
+					</label>
+				</div>
 
 
-			<br />
-			 <label asp-for="TextFiltr" class="control-label my-1"></label>
-			<input type="text" asp-for="TextFiltr" />
+				@*				INPUT TEXT KTERÝ CHCI NAJÍT V PŘEZDÍVKÁCH
+				*@				<br />
+				<label asp-for="TextFiltr" class="control-label my-1"></label>
+				<input type="text" asp-for="TextFiltr" />
+
+				@*				TLAČÍTKO FILTROVAT
+				*@				<div class="form-group mt-4">
+					<input type="submit" value="Filtrovat" class="btn btn-primary" />
+				</div>
+				@*				SKRYTÉ TLAČÍTKO KTERÉ SLOUŽÍ K ODESLÁNÍ FORMULÁŘE KDYŽ STIKNU ODKAZ - ČÍSLO STRÁNKY
+				*@				<input asp-for="CisloStranky" type="text" name="CisloStranky" value="" id="pageInput" class="d-none" />
 
 
-			<div class="form-group mt-4">
-				<input type="submit" value="Filtrovat" class="btn btn-primary" />
-			</div>
 			</form>
 		</div>
-		
+
 
 		<p class="text-light text-muted text-left">Nalezeno: @Model.Dotaz.Count</p>
+
+
+		@*		Odkazy na jednotlivé stránky . 1000 ZAZNAMU NA STRÁNKU*@
+		<div class="d-flex flex-wrap justify-content-center">
+
+			@{
+				for (int j = 1; j < (Model.Dotaz.Count / 1000) + 2; j++)
+				{
+
+					if (ViewBag.CisloStranky != j)
+					{
+
+						<a class="p-1" href="#" data-page="@j" value="@j" onclick="submitForm(this)">@j</a>
+					}
+					else
+					{
+						//KDYŽ JE ČÍSLO STRANY STEJNE NA JAKÉ JSEM TAK BUDE BÍLE
+						<a class="p-1 text-light" href="#" value="@j" data-page="@j" onclick="submitForm(this)">@j</a>
+					}
+
+
+				}
+			}
+		</div>
+
 		<div class="row justify-content-center">
 			@{
-				for (int i = 0; i < Model.Dotaz.Count; i++)
+				int cs = ViewBag.CisloStranky;  //ČISLO STRINKY
+				var zobraz = Model.Dotaz.Skip((cs - 1) * 1000).Take(1000).ToList(); // 1000 dat co chci zobrazit na stranku, podle toho na jake strance jsem
+
+				for (int i = 0; i < zobraz.Count; i++)      // vygeneruje 1000 karet uzivatelu a jejich vlastností
 				{
 
 
 					<div class="card text-center col-5 col-md-2 border border-dark m-3 d-flex">
-						<a target="_blank" href="@Model.Dotaz[i].ObrazekWWW"><img class="card-img img-fluid mt-2" src=@Model.Dotaz[i].ObrazekWWW style="max-height:200px"></a>
+						<a target="_blank" href="@zobraz[i].ObrazekWWW"><img class="card-img img-fluid mt-2" src=@zobraz[i].ObrazekWWW style="max-height:200px"></a>
 						<div class="card-body">
-							
-							
-							<a target="_blank" href="https://www.itnetwork.cz/portfolio/ @Model.Dotaz[i].Id"> <h5 class="card-title fw-bold"> @Model.Dotaz[i].Jmeno </h5></a>
 
 
-							<p class="my-0"><span class="fw-bold">ID:</span> @Model.Dotaz[i].Id</p>
-							
+							<a target="_blank" href="https://www.itnetwork.cz/portfolio/ @zobraz[i].Id"> <h5 class="card-title fw-bold"> @zobraz[i].Jmeno </h5></a>
 
-							@if (@Model.Dotaz[i].Vek >0)
+
+							<p class="my-0"><span class="fw-bold">ID:</span> @zobraz[i].Id</p>
+
+
+							@if (@zobraz[i].Vek > 0)
 							{
-								<p class="my-0"><span class="fw-bold">Věk:</span> @Model.Dotaz[i].Vek</p>
+								<p class="my-0"><span class="fw-bold">Věk:</span> @zobraz[i].Vek</p>
 							}
-								
+
 							else
 							{
 								<p class="my-0"><span class="fw-bold">Věk: - </span></p>
 							}
-								
-											
-							<p class="my-0"><span class="fw-bold">Zkušenosti:</span> @Model.Dotaz[i].Zkusenost</p>
-							<p class="my-0"><span class="fw-bold">Aura:</span> @Model.Dotaz[i].Aura</p>
-							
-							<a target="_blank" href=@Model.Dotaz[i].Stranka class="">@Model.Dotaz[i].Stranka</a>
+
+
+							<p class="my-0"><span class="fw-bold">Zkušenosti:</span> @zobraz[i].Zkusenost</p>
+							<p class="my-0"><span class="fw-bold">Aura:</span> @zobraz[i].Aura</p>
+
+							<a target="_blank" href=@zobraz[i].Stranka class="">@zobraz[i].Stranka</a>
 
 						</div>
 					</div>
@@ -103,5 +131,9 @@
 			}
 
 		</div>
+
 	</div>
-</div>
+
+
+
+

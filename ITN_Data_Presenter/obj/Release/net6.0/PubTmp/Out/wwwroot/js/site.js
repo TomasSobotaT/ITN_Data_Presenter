@@ -1,4 +1,8 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿function submitForm(element) {
+    let page = element.getAttribute("data-page");
+    console.log(page)
+    document.querySelector("#pageInput").value = page;
+    console.log(document.querySelector("#pageInput").value);
+    let form = document.querySelector("form");
+    form.submit();
+}

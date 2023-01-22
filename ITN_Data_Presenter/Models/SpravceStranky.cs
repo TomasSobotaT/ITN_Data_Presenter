@@ -25,7 +25,10 @@ namespace ITN_Data_Presenter.Models
         [Display(Name = "Hledaná přezdívka")]
         public string TextFiltr { get; set; } = "";
 
-
+        //číslo stránky na které bylo kliknuto
+        [BindProperty]
+        public int CisloStranky { get; set; } = 1;
+        
 
         /// <summary>
         /// Metoda vyfiltruje uživatele na základě vybraných vlastností
