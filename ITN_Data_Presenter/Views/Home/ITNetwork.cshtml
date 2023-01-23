@@ -1,6 +1,6 @@
 ﻿@model ITN_Data_Presenter.Models.SpravceStranky
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row bg-dark text-center">
 
 		<div>
@@ -10,35 +10,35 @@
 			@*			FORMULÁŘ PRO FILTRACI
 			*@			<form asp-action="ITNetwork" class="mb-5 text-light" id="form">
 				<div class="form-group">
-					<label class="form-check-label">
+					<label class="form-check-label m-2">
 						@Html.RadioButtonFor(Model => Model.SeraditPodle,"id")
 						@Html.DisplayName("Seřadit podle Id")
 					</label>
-					<label class="form-check-label">
+					<label class="form-check-label m-2">
 						@Html.RadioButtonFor(Model => Model.SeraditPodle, "jmeno")
 						@Html.DisplayName("Seřadit podle jména")
 					</label>
-					<label class="form-check-label">
+					<label class="form-check-label m-2">
 						@Html.RadioButtonFor(Model => Model.SeraditPodle, "vek")
 						@Html.DisplayName("Seřadit podle věku")
 					</label>
-					<label class="form-check-label">
+					<label class="form-check-label m-2">
 						@Html.RadioButtonFor(Model => Model.SeraditPodle, "zkusenost")
 						@Html.DisplayName("Seřadit podle zkušeností")
 					</label>
-					<label class="form-check-label">
+					<label class="form-check-label m-2">
 						@Html.RadioButtonFor(Model => Model.SeraditPodle, "aura")
 						@Html.DisplayName("Seřadit podle aury")
 					</label>
 				</div>
 
-				<div class="mt-2">
-					<label class="form-check-label mx-1">
+				<div class="mt-3">
+					<label class="form-check-label m-2">
 						@Html.CheckBoxFor(Model => Model.JenSwww)
 						@Html.DisplayName("Jen ti co mají www stránky")
 					</label>
 
-					<label class="form-check-label mx-1">
+					<label class="form-check-label m-2">
 						@Html.CheckBoxFor(Model => Model.JenSFoto)
 						@Html.DisplayName("Jen ti co mají foto")
 					</label>
@@ -47,8 +47,8 @@
 
 				@*				INPUT TEXT KTERÝ CHCI NAJÍT V PŘEZDÍVKÁCH
 				*@				<br />
-				<label asp-for="TextFiltr" class="control-label my-1"></label>
-				<input type="text" asp-for="TextFiltr" />
+				<label asp-for="TextFiltr" class="control-label mt-1 mb-4 mx-2"></label>
+				<input type="text" asp-for="TextFiltr" placeholder="..část hledané přezdívky.." />
 
 				@*				TLAČÍTKO FILTROVAT
 				*@				<div class="form-group mt-4">
@@ -61,7 +61,7 @@
 			</form>
 		</div>
 
-
+	
 		<p class="text-light text-muted text-left">Nalezeno: @Model.Dotaz.Count</p>
 
 
@@ -96,8 +96,8 @@
 				for (int i = 0; i < zobraz.Count; i++)      // vygeneruje 1000 karet uzivatelu a jejich vlastností
 				{
 
-
-					<div class="card text-center col-5 col-md-2 border border-dark m-3 d-flex">
+					//obrazenk není uložen, jen jeho odkaz, kliknutím na něj se zobrazí obrazek na puvodni strance, na kartu se stahuje tez z uvodni stranky
+					<div class="card text-center col-10 offset-1 col-md-2 offset-md-0 border border-dark m-3 d-flex">
 						<a target="_blank" href="@zobraz[i].ObrazekWWW"><img class="card-img img-fluid mt-2" src=@zobraz[i].ObrazekWWW style="max-height:200px"></a>
 						<div class="card-body">
 
